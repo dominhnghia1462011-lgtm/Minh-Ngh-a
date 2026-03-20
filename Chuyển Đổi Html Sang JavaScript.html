@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>CÔNG CỤ HỖ TRỢ CHUYỂN ĐỔI + MÃ HOÁ BY BENNY</title>
+    <style>
+        /* Toàn bộ nền và hiệu ứng bong bóng */
+        body { 
+            background: #000000; 
+            color: #ff0000; 
+            font-family: 'Segoe UI', Tahoma, sans-serif; 
+            padding: 90px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Hiệu ứng LED 7 màu chạy cho viền và chữ */
+        @keyframes rgb-loop {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        /* Hiệu ứng bong bóng bay lên */
+        @keyframes move-bubbles {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        /* Cấu trúc bong bóng */
+        .bubble {
+            position: fixed;
+            bottom: -10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: move-bubbles linear infinite;
+        }
+
+        /* Khung Box với viền LED 7 màu */
+        .box { 
+            border: 5px solid #ff0000; 
+            padding: 100px; 
+            border-radius: 100px; 
+            background: rgba(17, 17, 17, 0.9); /* Làm hơi trong suốt để thấy bong bóng */
+            width: 95%; 
+            max-width: 745px; 
+            box-shadow: 0 0 100px rgba(255, 0, 0, 0.5);
+            animation: rgb-loop 4s linear infinite; /* Chạy 7 màu cho toàn bộ box */
+            z-index: 100;
+        }
+
+        /* Chữ 7 màu */
+        h2 { 
+            text-align: center; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            animation: rgb-loop 2s linear infinite;
+        }
+
+        textarea { 
+            width: 100%; 
+            height: 600px; 
+            background: #000; 
+            color: #fff; 
+            border: 1px solid #333; 
+            padding: 10px; 
+            margin: 15px 0; 
+            border-radius: 20px; 
+            font-family: monospace; 
+            outline: none;
+        }
+
+/* Thêm đoạn này để ẩn chữ "Chọn tệp" */
+input[type="file"] {
+    display: none;
+}
+
+/* Giữ nguyên đoạn button, label bạn đã có */
+button, label {
+    background: #FFFFFF;
+    color: #000;
+    /* ... các thuộc tính khác của bạn ... */
+    display: inline-block; /* Thêm dòng này để label hiển thị chuẩn */
+}
+        button, label { 
+            background: #FFFFFF; 
+            color: #000; 
+            border: none; 
+            padding: 30px 10px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            border-radius: 100px; 
+            transition: 0.3s; 
+            box-shadow: 0 0 100px #fff;
+        }
+
+        button:hover { 
+            transform: scale(1.1); 
+            background: #ff0000; 
+            color: #fff; 
+        }
+
+        .status { color: #FFFFFF; font-size: 1.1em; margin-top: 20px; text-align: center; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>👨‍💻CÔNG CỤ CHUYỂN ĐỔI HTML SANG JAVASCRIPT + MÃ HOÁ TRÁNH LEAK BY BENNY</h2>
+    
+    <div style="text-align: center;">
+        <label for="filePicker">📂 CHỌN FILE HTML 📂</label>
+        <input type="file" id="filePicker" accept=".html">
+    </div>
+
+    <textarea id="rawCode" placeholder="👉 DÁN CODE HTML VÀO ĐÂY HOẶC IMPORT FILE HTML VÀO 👈"></textarea>
+    
+    <div class="btn-zone">
+        <button onclick="processCode()">🔥 CHUYỂN ĐỔI + MÃ HOÁ 🔥</button>
+        <button id="saveBtn" style="display:none;" onclick="saveFile()">📁 TẢI FILE VỀ 📁</button>
+    </div>
+
+    <textarea id="finalCode" placeholder="🔥 VĂN BẢN ĐÃ ĐƯỢC CHUYỂN ĐỔI + MÃ HOÁ 🔥" readonly></textarea>
+    <div id="msg" class="status"></div>
+</div>
+
+<script>
+    // Xử lý khi chọn file
+    document.getElementById('filePicker').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onload = (h) => {
+            document.getElementById('rawCode').value = h.target.result;
+            document.getElementById('msg').innerText = "ĐÃ NHẬP FILE👉" + file.name;
+        };
+        reader.readAsText(file);
+    });
+
+    function processCode() {
+        const source = document.getElementById('rawCode').value;
+        if(!source) return alert("DÁN CODE HTML VÀO HOẶC IMPORT FILE HTML VÀO ĐỂ THỰC HIỆN❗");
+
+        // Bước 1: Chuyển HTML sang Base64 để tránh lỗi ký tự
+        const b64 = btoa(unescape(encodeURIComponent(source)));
+
+        // Bước 2: Tạo đoạn mã tự động giải mã và hiển thị khi chạy JS
+        const template = `/* 
+• CHUYỂN ĐỔI + MÃ HOÁ ĐÃ HOÀN TẤT ✅
+• 👨‍💻AUTHOR: BENNY
+• 📱CẦN SUPPORT HAY MUA FILE VUI LÒNG LIÊN HỆ ZALO👉0344136002👈
+• ⚠️THAY ĐỔI THÔNG TIN HAY BẤT CỨ GÌ THÌ SẼ HOÀN TOÀN MẤT TÁC DỤNG! XIN CẢM ƠN! */
+(function(){
+    var _data = "${b64}";
+    var _decoded = decodeURIComponent(escape(atob(_data)));
+    document.open();
+    document.write(_decoded);
+    document.close();
+})();`;
+
+        document.getElementById('finalCode').value = template;
+        document.getElementById('saveBtn').style.display = "inline-block";
+        document.getElementById('msg').innerText = "🔥 CHUYỂN ĐỔI + MÃ HOÁ THÀNH CÔNG!🔥 TRẠNG THÁI: ĐÃ SẴN SÀNG!";
+    }
+
+    function saveFile() {
+        const content = document.getElementById('finalCode').value;
+        const blob = new Blob([content], {type: "text/javascript"});
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "Benny_MakeByBennyAdr.js";
+        link.click();
+    }
+</script>
+
+</body>
+</html>
